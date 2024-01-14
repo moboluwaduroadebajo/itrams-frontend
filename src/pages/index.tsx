@@ -1,118 +1,168 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+// import Image from "next/image";
+// import { Inter } from "next/font/google";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+import { Loader } from "@/components/Loader";
+import axios from "axios";
+import Link from "next/link";
+import InputField from "@/components/FormFields/InputField";
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
+
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   setLoader(true);
+
+  //   let details = { username, password };
+
+  //   await fetch(
+  //     "https://backend-core.azuremicroservices.io/api/v1/auth/login",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //       },
+  //       body: JSON.stringify(details),
+  //     }
+  //   )
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         console.log("###1");
+  //         console.log(res);
+  //         toast.error("Bad credentials");
+  //         return;
+  //       }
+  //       console.log("###2");
+
+  //       return res.json();
+  //     })
+  //     .then((response) => {
+  //       toast.success(response.message);
+  //     })
+
+  //     .catch((err) => {
+  //       console.log("###3");
+  //       console.log(err);
+  //     });
+
+  //   setUsername("");
+  //   setPassword("");
+  //   setLoader(false);
+  // };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = {
+      username,
+      password,
+    };
+
+    setLoader(true);
+    await axios
+      .post(
+        "https://backend-core.azuremicroservices.io/api/v1/auth/login",
+        formData
+      )
+      .then((res) => {
+        console.log(res);
+        toast.success(res.data.message);
+        if (res.data.data.user.type === "ADMIN") {
+          // navigate("/admin");
+        }
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response);
+          toast.error(err.response.data.errors[0]);
+        } else {
+          console.log(err);
+        }
+      });
+    // setUsername("");
+    // setPassword("");
+    setLoader(false);
+  };
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <header className="flex flex-col items-center min-h-screen ">
+      <h2 className="mb-24">ITraMs signup page</h2>
+      <ToastContainer />
+
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-col items-center mb-12">
+          <p className="font-sora font-extrabold text-[42px]">Login</p>
+          <p className="font-sora font-normal text-[20px] text-[#747A80]">
+            Enter your detail to be onboarded
+          </p>
         </div>
-      </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+        <div>
+          {/* <label>Username</label>
+          <input
+            className="appearance-none border-2 rounded outline-none font-normal p-2 w-full"
+            type="text"
+            name="username"
+            placeholder="username"
+            value={username}
+            required
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          /> */}
+          <InputField
+            type="text"
+            name="username"
+            label="Username"
+            placeholder="username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+        </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+        <div className="my-6">
+          <label>Password</label>
+          <input
+            className="appearance-none border-2 rounded outline-none font-normal p-2 w-full"
+            type="password"
+            name="password"
+            placeholder="password"
+            value={password}
+            required
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        <div className="text-gray-600 text-right cursor-pointer">
+          {" "}
+          Forgot password?
+        </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
+        <button
+          className="bg-blue-700 p-2 rounded-md text-white px-6 flex items-center justify-center w-full mt-6"
+          type="submit">
+          {loader ? <Loader /> : "Login"}
+        </button>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+        <p className="mt-8">
+          Don&apos;t have an account yet?{" "}
+          <span className="text-blue-500 cursor-pointer">
+            <Link href="/signup"> Sign up as an employer</Link>
+          </span>
+        </p>
+      </form>
+    </header>
+  );
 }
+
