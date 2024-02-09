@@ -1,17 +1,21 @@
 import React from "react";
+import { Icons } from "../icons";
+import Button from "../Button";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
     <>
-      <nav className="flex items-center justify-between h-[90px] bg-[#072A40] px-16 py-8">
-        <h2 className="text-[30px] font-bold text-[#178CA4]">ITraMs</h2>
-        <div className="flex justify-center items-center gap-6">
-          <button className="h-[50px] w-[105px] rounded-md  bg-[#178CA4] text-white">
-            Login
-          </button>
-          <button className="h-[50px] w-[105px] rounded-md bg-[#178CA4] text-white">
-            Sign up
-          </button>
+      <nav className="p-16 mb-10">
+        <div className="flex justify-between items-center w-full">
+          <Icons name="logo" />
+          <Link href="/signup">
+            <Button
+              variant="primary"
+              label="Sign up"
+              additionalClassname="w-[244px]"
+            />
+          </Link>
         </div>
       </nav>
     </>

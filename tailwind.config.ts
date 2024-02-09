@@ -17,7 +17,10 @@ const config: Config = {
         domine: ["var(--font-domine)"],
         inter: ["var(--font-inter)"],
         mulish: ["var(--font-mulish)"],
-        pari: ["var(--font-pari)"],
+        poppins: ["var(--font-poppins)"],
+      },
+      boxShadow: {
+        vertical: "2px 0 #D5D5D5",
       },
     },
   },

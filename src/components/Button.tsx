@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 interface ButtonProps {
@@ -7,6 +8,9 @@ interface ButtonProps {
   height?: number;
   onClick?: (arg: any) => void;
   type?: "button" | "submit";
+  icon?: React.ReactNode;
+  iconPosition?: "left" | "right";
+  additionalClassname?: any;
 }
 
 const Button = ({
@@ -16,6 +20,9 @@ const Button = ({
   label,
   onClick = () => {},
   type,
+  icon,
+  iconPosition,
+  additionalClassname,
 }: ButtonProps) => {
   const computedStyle = () => {
     const style: { width?: string; height?: string; color?: string } = {};
@@ -32,10 +39,28 @@ const Button = ({
   };
   return (
     <button
+      type={type}
       style={computedStyle()}
       onClick={onClick}
-      className="bg-black p-2 rounded-md text-white px-28 w-full flex items-center justify-center mt-6">
+      className={clsx({
+        "flex items-center justify-center rounded-md h-[52px] mt-6": true,
+        "bg-[#0066FF] text-white": variant === "primary",
+        "bg-white border border-[#0066FF]": variant === "secondary",
+        [additionalClassname]: additionalClassname,
+      })}>
+      {icon && iconPosition === "left" && (
+        <>
+          {icon}
+          <div className="w-2" />
+        </>
+      )}
       {label}
+      {icon && iconPosition === "right" && (
+        <>
+          <div className="w-2" />
+          {icon}
+        </>
+      )}
     </button>
   );
 };
