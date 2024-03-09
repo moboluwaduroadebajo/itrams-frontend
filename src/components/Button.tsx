@@ -45,7 +45,8 @@ const Button = ({
       className={clsx({
         "flex items-center justify-center rounded-md h-[52px] mt-6": true,
         "bg-[#0066FF] text-white": variant === "primary",
-        "bg-white border border-[#0066FF]": variant === "secondary",
+        "bg-white border border-[#0066FF] text-[#0066FF]":
+          variant === "secondary",
         [additionalClassname]: additionalClassname,
       })}>
       {icon && iconPosition === "left" && (

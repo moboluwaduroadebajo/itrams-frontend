@@ -1,12 +1,12 @@
 import { PageLayout } from "@/components/PageLayout";
 import React from "react";
 
-const Supervisor = () => {
+const index = () => {
   return (
     <PageLayout>
-      <div>Supervisor page </div>
+      <div>Coordinator</div>
     </PageLayout>
   );
 };
 
-export default Supervisor;
+export default index;

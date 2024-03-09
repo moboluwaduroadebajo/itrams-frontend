@@ -1,10 +1,12 @@
 import React from "react";
 import Button from "../Button";
 import Link from "next/link";
+import Image from "next/image";
+import heroImage from "../../assets/hero-image.png";
 
 const HeroSection = () => {
   return (
-    <div className="flex px-16">
+    <div className="flex justify-between items-center px-16">
       <div className="w-2/5">
         <p className="font-inter text-4xl font-semibold mb-4">
           Electronic Industrial Training Management System
@@ -31,6 +33,10 @@ const HeroSection = () => {
             />
           </Link>
         </div>
+      </div>
+
+      <div>
+        <Image src={heroImage} alt="hero" className="" />
       </div>
     </div>
   );

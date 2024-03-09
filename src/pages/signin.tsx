@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Loader } from "@/components/Loader";
@@ -9,9 +9,45 @@ import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Icons } from "@/components/icons";
+import {
+  accountSlice,
+  selectAccessToken,
+  selectAccountState,
+  selectIsAuthenticated,
+  selectUserInformation,
+  selectUserRole,
+} from "@/reducers/account.reducer";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { login } from "@/thunks/account-thunk";
 
 const Signin = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const userRole = useAppSelector(selectUserRole);
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const { error: loginError } = useAppSelector(selectAccountState);
+  const user = useAppSelector(selectUserInformation);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (userRole === "ADMIN") {
+        router.push("/admin");
+      } else if (userRole === "EMPLOYER") {
+        router.push("/employer");
+      } else if (userRole === "STUDENT") {
+        router.push("/student");
+      } else if (userRole === "SUPERVISOR") {
+        router.push("/supervisor");
+      }
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    if (loginError) {
+      formik.setSubmitting(false);
+    }
+  }, [loginError]);
 
   const formik = useFormik({
     initialValues: {
@@ -22,36 +58,16 @@ const Signin = () => {
       username: Yup.string().required("Username is required"),
       password: Yup.string().required("Password is required"),
     }),
-    onSubmit: async (values) => {
+    onSubmit: (values) => {
       const { username, password } = values;
-      await axios
-        .post("https://backend-core.azuremicroservices.io/api/v1/auth/login", {
-          username,
-          password,
-        })
-        .then((res) => {
-          console.log(res);
-          toast.success(res.data.message);
-          if (res.data.data.user.type === "ADMIN") {
-            router.push("/admin");
-          } else if (res.data.data.user.type === "EMPLOYER") {
-            router.push("/employer");
-          } else if (res.data.data.user.type === "STUDENT") {
-            router.push("/student");
-          } else if (res.data.data.user.type === "SUPERVISOR") {
-            router.push("/supervisor");
-          }
-        })
-        .catch((err) => {
-          if (err.response) {
-            console.log(err.response);
-            toast.error(err.response.data.errors[0]);
-          } else {
-            console.log(err);
-          }
-        });
+      try {
+        dispatch(login({ username: username, password: password }));
+      } catch (error) {
+        console.log("Error", error);
+      }
     },
   });
+
   return (
     <main>
       <ToastContainer />

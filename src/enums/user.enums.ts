@@ -1,0 +1,9 @@
+export enum UserRolesEnum {
+  SUPER_ADMIN_ROLE_ID = 1,
+  ADMIN_ROLE_ID = 2,
+  LECTURER_ID = 3,
+  SUPERVISOR_ID = 4,
+  COORDINATOR_ID = 5,
+  EMPLOYER_ID = 6,
+  STUDENT_ID = 7,
+}
