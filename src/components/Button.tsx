@@ -2,7 +2,8 @@ import clsx from "clsx";
 import React from "react";
 
 interface ButtonProps {
-  variant?: "primary" | "secondary" | "tertiary" | "greenBordered";
+  variant?: "primary" | "secondary";
+  size?: "large" | "small" | "medium";
   label?: string;
   width?: number;
   height?: number;
@@ -15,6 +16,7 @@ interface ButtonProps {
 
 const Button = ({
   variant,
+  size,
   width,
   height,
   label,
@@ -44,6 +46,11 @@ const Button = ({
       onClick={onClick}
       className={clsx({
         "flex items-center justify-center rounded-md h-[52px] mt-6": true,
+        "h-[40px]": !size || ["large", "medium"].includes(size),
+        "h-[32px]": size === "small",
+        "w-[244px]": size === "large",
+        "w-[126px]": size === "medium",
+        "w-[90px] h-[32px]": size === "small",
         "bg-[#0066FF] text-white": variant === "primary",
         "bg-white border border-[#0066FF] text-[#0066FF]":
           variant === "secondary",

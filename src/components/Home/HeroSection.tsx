@@ -6,37 +6,40 @@ import heroImage from "../../assets/hero-image.png";
 
 const HeroSection = () => {
   return (
-    <div className="flex justify-between items-center px-16">
-      <div className="w-2/5">
-        <p className="font-inter text-4xl font-semibold mb-4">
-          Electronic Industrial Training Management System
-        </p>
-        <p className="font-poppins text-base">
-          e-ITrams is a platform designed to connect employers to students on IT
-          and to mange logbook and paticipation
-        </p>
+    <div className="md:px-12">
+      <div className="flex lg:flex-nowrap flex-wrap justify-between items-center md:px-16 px-4">
+        <div className="lg:w-2/5 sm:w-2/3">
+          <p className="font-inter md:text-4xl text-2xl font-bold mb-4">
+            Electronic Industrial Training Management System
+          </p>
+          <p className="font-poppins text-base">
+            e-ITrams is a platform designed to connect employers to students on
+            IT and to mange logbook and paticipation
+          </p>
 
-        <div className="flex gap-6 mt-10">
-          <Link href="/signup">
-            <Button
-              label="Sign up"
-              variant="primary"
-              additionalClassname="w-[244px]"
-            />
-          </Link>
+          <div className="flex md:gap-6 gap-3 lg:mt-10 mt-4">
+            <Link href="/signup">
+              <Button
+                label="Sign up"
+                variant="primary"
+                size="large"
+                additionalClassname="md:w-[244px] w-[100px]"
+              />
+            </Link>
 
-          <Link href="/signin">
-            <Button
-              label="Log in"
-              variant="secondary"
-              additionalClassname="w-[244px]"
-            />
-          </Link>
+            <Link href="/signin">
+              <Button
+                label="Log in"
+                variant="secondary"
+                additionalClassname="md:w-[244px] w-[100px]"
+              />
+            </Link>
+          </div>
         </div>
-      </div>
 
-      <div>
-        <Image src={heroImage} alt="hero" className="" />
+        <div className="md:block ">
+          <Image src={heroImage} alt="hero" />
+        </div>
       </div>
     </div>
   );

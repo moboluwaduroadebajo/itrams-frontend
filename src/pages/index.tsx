@@ -1,14 +1,22 @@
 import { useRouter } from "next/router";
-import { Navbar } from "@/components/Home";
-import HeroSection from "@/components/Home/HeroSection";
+import {
+  About,
+  Footer,
+  HeroSection,
+  JoinTrain,
+  Navbar,
+} from "@/components/Home";
 
 export default function Home() {
   const router = useRouter();
 
   return (
-    <main className="px-12">
+    <main>
       <Navbar />
       <HeroSection />
+      <About />
+      <JoinTrain />
+      <Footer />
     </main>
   );
 }

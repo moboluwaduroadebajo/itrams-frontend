@@ -12,6 +12,8 @@ import CustomSelect from "@/components/FormFields/CustomSelect";
 import { Loader } from "@/components/Loader";
 
 const SignUp = () => {
+  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL;
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -27,15 +29,11 @@ const SignUp = () => {
     },
     onSubmit: async (values) => {
       await axios
-        .post(
-          "https://backend-core.azuremicroservices.io/api/v1/auth/employer/register",
-          values,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
+        .post(`${baseURL}/auth/employer/register`, values, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
         .then((res) => {
           console.log(res.data);
           toast.success(res.data.message);
@@ -203,11 +201,11 @@ const SignUp = () => {
           </span>
         </p>
 
-        <div className="flex items-center md:gap-7 ga mt-6 text-[#8B8B8B] font-inter md:text-sm text-xs">
+        <div className="flex items-center md:gap-7 gap-2 mt-6 text-[#8B8B8B] font-inter md:text-sm text-xs">
           <input type="checkbox" className="bg-[#EBF0F0] rounded h-6 w-6" />
-          <p>
+          <p className="text-justify">
             By registering I confirm I have read and agree to the Terms of Use.{" "}
-            <br />
+            <br className="md:block hidden" />
             We manage personal data as set out in our Privacy Notice.
           </p>
         </div>

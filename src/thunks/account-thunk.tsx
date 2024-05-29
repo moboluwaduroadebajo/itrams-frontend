@@ -1,11 +1,7 @@
 import ApiInstance from "@/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import {
-  LoginPayloadType,
-  LoginResponseType,
-  UserEntityType,
-} from "@/types/account.type";
+import { LoginPayloadType, UserEntityType } from "@/types/account.type";
 import { toast } from "react-toastify";
 import { Alert } from "@/components/Toast/Alert";
 

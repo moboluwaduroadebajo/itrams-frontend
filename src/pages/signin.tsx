@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Loader } from "@/components/Loader";
-import axios from "axios";
 import InputField from "@/components/FormFields/InputField";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -10,11 +9,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Icons } from "@/components/icons";
 import {
-  accountSlice,
-  selectAccessToken,
   selectAccountState,
   selectIsAuthenticated,
-  selectUserInformation,
   selectUserRole,
 } from "@/reducers/account.reducer";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
@@ -27,7 +23,6 @@ const Signin = () => {
   const userRole = useAppSelector(selectUserRole);
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const { error: loginError } = useAppSelector(selectAccountState);
-  const user = useAppSelector(selectUserInformation);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -41,7 +36,7 @@ const Signin = () => {
         router.push("/supervisor");
       }
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router, userRole]);
 
   useEffect(() => {
     if (loginError) {

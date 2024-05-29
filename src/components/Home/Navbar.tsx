@@ -5,20 +5,21 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <>
-      <nav className="p-16 mb-10">
+    <div className="md:px-12">
+      <nav className="md:p-16 p-4 mb-10">
         <div className="flex justify-between items-center w-full">
           <Icons name="logo" />
           <Link href="/signup">
             <Button
               variant="primary"
+              size="large"
               label="Sign up"
-              additionalClassname="w-[244px]"
+              additionalClassname="md:w-[244px] w-[150px]"
             />
           </Link>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 
