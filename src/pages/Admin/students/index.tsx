@@ -68,7 +68,11 @@ const Student = () => {
 
           <div className="my-8">
             {supervisorList.map((item) => (
-              <AdminCard key={uuid()} name={item.name} text={item.department} />
+              <AdminCard
+                key={uuid()}
+                name={item.name}
+                department={item.department}
+              />
             ))}
           </div>
         </div>

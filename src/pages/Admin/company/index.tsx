@@ -66,7 +66,11 @@ const Company = () => {
 
           <div className="my-8">
             {companyList.map((item) => (
-              <AdminCard key={item.name} name={item.name} text={item.company} />
+              <AdminCard
+                key={item.name}
+                name={item.name}
+                department={item.company}
+              />
             ))}
           </div>
         </div>
