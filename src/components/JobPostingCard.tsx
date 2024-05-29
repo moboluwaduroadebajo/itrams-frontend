@@ -40,7 +40,7 @@ const JobPostingCard = ({
     } else {
       setDisplayDesc(description);
     }
-  }, []);
+  }, [description]);
 
   return (
     <div className="w-full mt-8 rounded-xl bg-[#f5f9ff] p-10">

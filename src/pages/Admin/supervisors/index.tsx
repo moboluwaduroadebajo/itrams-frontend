@@ -1,10 +1,6 @@
-import Button from "@/components/Button";
-import InputField from "@/components/FormFields/InputField";
 import { PageLayout } from "@/components/PageLayout";
 import React from "react";
-import avatar from "@/components/icons/avatar.png";
 import { FaMagnifyingGlass, FaPlus } from "react-icons/fa6";
-import Image from "next/image";
 import AdminCard from "@/components/AdminCard";
 import { supervisorList } from "@/utils/miscellanous.util";
 

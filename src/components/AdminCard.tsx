@@ -5,11 +5,12 @@ import avatarSmall from "../components/icons/avatar2.png";
 
 interface CardProps {
   name: string;
-  text: string;
+
+  department: string;
   noOfStudents?: number;
 }
 
-const AdminCard = ({ name, text, noOfStudents }: CardProps) => {
+const AdminCard = ({ name, noOfStudents, department }: CardProps) => {
   return (
     <div className="flex items-center justify-between bg-[#f2f7ff] h-[108px] p-6 mt-4 rounded-xl">
       <div className="flex justify-start">
@@ -17,7 +18,7 @@ const AdminCard = ({ name, text, noOfStudents }: CardProps) => {
         <div className="flex flex-col gap-1">
           <p className=" capitalize font-inter font-medium text-base">{name}</p>
           <p className="font-inter text-base text-[777777] font-extralight capitalize">
-            {text}
+            {department}
           </p>
         </div>
       </div>
