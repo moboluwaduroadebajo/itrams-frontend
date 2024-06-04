@@ -43,7 +43,7 @@ const JobPostingCard = ({
   }, [description]);
 
   return (
-    <div className="w-full mt-8 rounded-xl bg-[#f5f9ff] p-10">
+    <div className="w-full mt-10 rounded-xl bg-[#f5f9ff] p-10">
       <div className="flex justify-between">
         <div className="flex items-center gap-2">
           <Image alt="employer-image" src={avatar} />

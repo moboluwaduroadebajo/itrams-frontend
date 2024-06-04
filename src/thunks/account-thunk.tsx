@@ -28,6 +28,7 @@ export const login = createAsyncThunk<UserEntityType, LoginPayloadType>(
         throw err;
       }
       toast.error(<Alert message={error.response.data.message} type="error" />);
+
       return rejectWithValue(error.response.data);
     }
   }

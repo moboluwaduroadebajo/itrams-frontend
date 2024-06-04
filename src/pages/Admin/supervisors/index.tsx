@@ -67,7 +67,7 @@ const Supervisor = () => {
             />
           </div> */}
         </div>
-        <div className="w-1/2"></div>
+        <div className="basis-1/2"></div>
       </div>
     </PageLayout>
   );

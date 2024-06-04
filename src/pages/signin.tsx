@@ -59,6 +59,7 @@ const Signin = () => {
         dispatch(login({ username: username, password: password }));
       } catch (error) {
         console.log("Error", error);
+        formik.resetForm;
       }
     },
   });
