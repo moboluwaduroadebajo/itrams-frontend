@@ -8,7 +8,6 @@ import { Loader } from "@/components/Loader";
 import { FaPlus } from "react-icons/fa6";
 import avatar from "@/components/icons/avatar.png";
 import Image from "next/image";
-import { toast } from "react-toastify";
 
 const Employer = () => {
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL;
