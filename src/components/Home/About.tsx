@@ -34,7 +34,11 @@ const About = () => {
         </div>
 
         <div className="flex justify-between gap-10 leading-8 md:w-1/2 md:m-auto mx-6 border-l-4">
-          <Image src={studentDynamicImg} alt="student-dynamic" />
+          <Image
+            src={studentDynamicImg}
+            alt="student-dynamic"
+            className="md:block hidden"
+          />
 
           <div className="flex flex-col gap-4 font-poppins">
             <p className="font-bold md:text-2xl text-xl">Search for a job</p>

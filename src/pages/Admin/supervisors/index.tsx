@@ -34,38 +34,6 @@ const Supervisor = () => {
               Onboard new supervisor
             </p>
           </div>
-
-          {/* <div className="mt-8">
-            <InputField
-              name="name"
-              type="text"
-              label="Full name"
-              placeholder="Enter your name"
-            />
-            <InputField
-              type="text"
-              name="department"
-              label="Department"
-              placeholder="Enter your department"
-            />{" "}
-            <InputField
-              type="email"
-              name="email"
-              label="email address"
-              placeholder="Enter your email"
-            />{" "}
-            <InputField
-              type="text"
-              name="bio"
-              label="bio"
-              placeholder="Enter your bio"
-            />
-            <Button
-              label="Onboard"
-              variant="primary"
-              additionalClassname="w-full"
-            />
-          </div> */}
         </div>
         <div className="basis-1/2"></div>
       </div>

@@ -7,7 +7,9 @@ import heroImage from "../../assets/hero-image.png";
 const HeroSection = () => {
   return (
     <div className="md:px-12">
-      <div className="flex lg:flex-nowrap flex-wrap justify-between items-center md:px-16 px-4">
+      <div
+        className="flex lg:flex-nowrap flex-wrap justify-between items-center md:px-16 px-4 gap-10
+      ">
         <div className="lg:w-2/5 sm:w-2/3">
           <p className="font-inter md:text-4xl text-2xl font-bold mb-4">
             Electronic Industrial Training Management System
@@ -17,12 +19,11 @@ const HeroSection = () => {
             IT and to mange logbook and paticipation
           </p>
 
-          <div className="flex md:gap-6 gap-3 lg:mt-10 mt-4">
+          <div className="flex md:gap-6 gap-3 lg:mt-10 mt-6">
             <Link href="/signup">
               <Button
                 label="Sign up"
                 variant="primary"
-                size="large"
                 additionalClassname="md:w-[244px] w-[100px]"
               />
             </Link>

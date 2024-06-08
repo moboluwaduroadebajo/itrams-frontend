@@ -45,7 +45,7 @@ const Button = ({
       style={computedStyle()}
       onClick={onClick}
       className={clsx({
-        "flex items-center justify-center rounded-md h-[52px] mt-6": true,
+        "flex items-center justify-center rounded-md h-[52px]": true,
         "h-[40px]": !size || ["large", "medium"].includes(size),
         "h-[32px]": size === "small",
         "w-[244px]": size === "large",

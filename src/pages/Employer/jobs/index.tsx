@@ -1,11 +1,6 @@
 import { PageLayout } from "@/components/PageLayout";
 import React from "react";
-import { FaMagnifyingGlass, FaPlus } from "react-icons/fa6";
-import avatar from "@/components/icons/avatar.png";
-import Image from "next/image";
-import { Icons } from "@/components/icons";
 import axios from "axios";
-import Button from "@/components/Button";
 import { JobPosting } from "@/types/job-posting.type";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "@/components/Loader";
